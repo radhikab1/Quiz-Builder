@@ -22,14 +22,15 @@ public class LimitedTriesQuiz extends Quiz {
     // attempts are allowed
     @Override
     public String submitAnswer(String answer) throws AnswerIncorrectException, OutOfTriesException {
+        if (maxMark == 0) {
+            throw new OutOfTriesException("Incorrect answer. No more attempts allowed!");
+        }
+
         boolean correct = super.checkAnswer(answer);
+
         if (!correct) {
             maxMark--;
             throw new AnswerIncorrectException("Re-try Question!");
-        }
-
-        if (maxMark == 0) {
-            throw new OutOfTriesException("Incorrect answer. No more attempts allowed!");
         }
 
         return correct ? "Correct!" : "Incorrect!";

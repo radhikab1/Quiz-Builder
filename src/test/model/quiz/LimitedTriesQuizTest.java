@@ -132,10 +132,12 @@ public class LimitedTriesQuizTest extends QuizTest {
             String feedback = quiz.submitAnswer("Saturn");
             assertEquals("Incorrect!", feedback);
             assertEquals(0, quiz.getMarkSoFar());
-            fail("Expected Exception");
-        } catch (Exception e) {
-        }
+            fail("Expected OutOfTriesException");
+        } catch (AnswerIncorrectException e) {
+            fail("Should not have thrown exception.");
+        } catch (OutOfTriesException e) {
 
+        }
 
         try {
             quiz.getNextQuestion();
@@ -191,8 +193,11 @@ public class LimitedTriesQuizTest extends QuizTest {
             String feedback = quiz.submitAnswer("Saturn");
             assertEquals("Incorrect!", feedback);
             assertEquals(0, quiz.getMarkSoFar());
-            fail("Expected Exception");
-        } catch (Exception e) {
+            fail("Expected OutOfTriesException");
+        } catch (AnswerIncorrectException e) {
+            fail("Should not have thrown exception.");
+        } catch (OutOfTriesException e) {
+
         }
 
         try {
@@ -263,8 +268,11 @@ public class LimitedTriesQuizTest extends QuizTest {
             assertEquals(0, quiz.getMarkSoFar());
             assertFalse(quiz.hasMoreQuestions());
             assertEquals("Your final mark is: 0 out of 6", quiz.endQuiz());
-            fail("Expected Exception");
-        } catch (Exception e) {
+            fail("Expected OutOfTriesException");
+        } catch (AnswerIncorrectException e) {
+            fail("Should not have thrown exception.");
+        } catch (OutOfTriesException e) {
+
         }
     }
 }
