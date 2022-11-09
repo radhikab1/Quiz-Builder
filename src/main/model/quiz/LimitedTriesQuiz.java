@@ -1,52 +1,52 @@
-//package model.quiz;
+package model.quiz;
+
+import model.exceptions.AnswerIncorrectException;
+import model.exceptions.OutOfTriesException;
+import model.question.QuestionList;
+
+public class LimitedTriesQuiz extends Quiz {
+    int maxMark;
+
+    // REQUIRES: questions cannot be an empty list
+    // EFFECTS: constructs quiz with given list of questions
+    public LimitedTriesQuiz(QuestionList questions) {
+        super(questions);
+        maxMark = questions.getMaxMark();
+    }
+
+    // MODIFIES: this
+    // EFFECTS: submit an answer to the current question and return feedback string;
+    // if the answer is incorrect, decrements the max mark of the current question by one;
+    // throws AnswerIncorrectExceptioncorrectException if the user should re-try the question
+    // throws an OutOfTriesException if the answer is incorrect and no more
+    // attempts are allowed
+    @Override
+    public String submitAnswer(String answer) throws AnswerIncorrectException, OutOfTriesException {
+        boolean correct = super.checkAnswer(answer);
+        if ((!correct) && (maxMark > 0)) {
+            maxMark--;
+            throw new AnswerIncorrectException("Re-try Question!");
+        }
+
+        if (maxMark == 0) {
+            throw new OutOfTriesException("Incorrect answer. No more attempts allowed!");
+        }
+
+        return correct ? "Correct!" : "Incorrect!";
+
+//        for (int maxMark = questions.getMaxMark(); maxMark >= 0; maxMark--) {
+//            boolean correct = super.checkAnswer(answer);
+//            if ((!correct) && (maxMark != 0)) {
+//                throw new AnswerIncorrectException("Re-try Question!");
+//            }
 //
-//import model.exceptions.AnswerIncorrectException;
-//import model.exceptions.OutOfTriesException;
-//import model.question.QuestionList;
-//
-//public class LimitedTriesQuiz extends Quiz {
-//    int maxMark;
-//
-//    // REQUIRES: questions cannot be an empty list
-//    // EFFECTS: constructs quiz with given list of questions
-//    public LimitedTriesQuiz(QuestionList questions) {
-//        super(questions);
-//        maxMark = questions.get(nextQuestion - 1).getmaxMark();
-//    }
-//
-//    // MODIFIES: this
-//    // EFFECTS: submit an answer to the current question and return feedback string;
-//    // if the answer is incorrect, decrements the max mark of the current question by one;
-//    // throws AnswerIncorrectExceptioncorrectException if the user should re-try the question
-//    // throws an OutOfTriesException if the answer is incorrect and no more
-//    // attempts are allowed
-//    @Override
-//    public String submitAnswer(String answer) throws AnswerIncorrectException, OutOfTriesException {
+//            if (maxMark == 0) {
+//                throw new OutOfTriesException("Incorrect answer. No more attempts allowed!");
+//            } else if (correct) {
+//                break;
+//            }
+//        }
 //        boolean correct = super.checkAnswer(answer);
-//        if ((!correct) && (maxMark > 0)) {
-//            maxMark--;
-//            throw new AnswerIncorrectException("Re-try Question!");
-//        }
-//
-//        if (maxMark == 0) {
-//            throw new OutOfTriesException("Incorrect answer. No more attempts allowed!");
-//        }
-//
 //        return correct ? "Correct!" : "Incorrect!";
-//
-////        for (int maxMark = questions.getMaxMark(); maxMark >= 0; maxMark--) {
-////            boolean correct = super.checkAnswer(answer);
-////            if ((!correct) && (maxMark != 0)) {
-////                throw new AnswerIncorrectException("Re-try Question!");
-////            }
-////
-////            if (maxMark == 0) {
-////                throw new OutOfTriesException("Incorrect answer. No more attempts allowed!");
-////            } else if (correct) {
-////                break;
-////            }
-////        }
-////        boolean correct = super.checkAnswer(answer);
-////        return correct ? "Correct!" : "Incorrect!";
-//    }
-//}
+    }
+}
