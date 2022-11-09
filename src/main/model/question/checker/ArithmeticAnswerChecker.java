@@ -15,7 +15,7 @@ public class ArithmeticAnswerChecker extends AnswerChecker {
 
         try {
             userAnswer = Integer.parseInt(userResponse);
-        } catch (Exception e) {
+        } catch (NumberFormatException e) {
             System.out.println("Not an integer!");
         }
         return answer == Integer.parseInt(userResponse);

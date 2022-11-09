@@ -34,7 +34,7 @@ public class ArithmeticAnswerCheckerTest {
         try {
             arithmeticAnswerChecker.checkAnswer("5.0");
             fail("Exception Expected");
-        } catch (Exception e) {
+        } catch (NumberFormatException e) {
 
         }
     }
@@ -44,7 +44,7 @@ public class ArithmeticAnswerCheckerTest {
         try {
             arithmeticAnswerChecker.checkAnswer("2147483648");
             fail("Exception Expected");
-        } catch (Exception e) {
+        } catch (NumberFormatException e) {
 
         }
     }
@@ -54,7 +54,7 @@ public class ArithmeticAnswerCheckerTest {
         try {
             arithmeticAnswerChecker.checkAnswer("-2147483649");
             fail("Exception Expected");
-        } catch (Exception e) {
+        } catch (NumberFormatException e) {
 
         }
     }
@@ -64,7 +64,7 @@ public class ArithmeticAnswerCheckerTest {
         try {
             arithmeticAnswerChecker.checkAnswer("four");
             fail("Exception Expected");
-        } catch (Exception e) {
+        } catch (NumberFormatException e) {
 
         }
     }
