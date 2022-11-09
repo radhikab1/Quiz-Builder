@@ -3,8 +3,8 @@ package model.question.checker;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.fail;
 
 public class ArithmeticAnswerCheckerTest {
     private ArithmeticAnswerChecker arithmeticAnswerChecker;
@@ -18,5 +18,46 @@ public class ArithmeticAnswerCheckerTest {
     void testUserResponseEqualsAnswer() {
         assertTrue(arithmeticAnswerChecker.checkAnswer("6"));
     }
+
+    @Test
+    public void testAnswerNonIntegerValue() {
+        try {
+            arithmeticAnswerChecker.checkAnswer("5.0");
+            fail("Exception Expected");
+        } catch (Exception e) {
+
+        }
+    }
+
+    @Test
+    public void testAnswerGreaterThanIntegerValuesRange() {
+        try {
+            arithmeticAnswerChecker.checkAnswer("2147483648");
+            fail("Exception Expected");
+        } catch (Exception e) {
+
+        }
+    }
+
+    @Test
+    public void testAnswerLessThanIntegerValuesRange() {
+        try {
+            arithmeticAnswerChecker.checkAnswer("-2147483649");
+            fail("Exception Expected");
+        } catch (Exception e) {
+
+        }
+    }
+
+    @Test
+    public void testAnswerNotInterpretedAsInteger() {
+        try {
+            arithmeticAnswerChecker.checkAnswer("four");
+            fail("Exception Expected");
+        } catch (Exception e) {
+
+        }
+    }
+
 
 }
