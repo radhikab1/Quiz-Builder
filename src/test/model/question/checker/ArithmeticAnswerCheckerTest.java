@@ -20,6 +20,16 @@ public class ArithmeticAnswerCheckerTest {
     }
 
     @Test
+    void testUserResponseLargerThanAnswer() {
+        assertFalse(arithmeticAnswerChecker.checkAnswer("7"));
+    }
+
+    @Test
+    void testUserResponseLessThanAnswer() {
+        assertFalse(arithmeticAnswerChecker.checkAnswer("5"));
+    }
+
+    @Test
     public void testAnswerNonIntegerValue() {
         try {
             arithmeticAnswerChecker.checkAnswer("5.0");
