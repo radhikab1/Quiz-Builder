@@ -10,7 +10,7 @@
 //import static org.junit.jupiter.api.Assertions.fail;
 //
 //public class LimitedTriesQuizTest extends QuizTest {
-//    private LimitedTriesQuiz limitedTriesQuiz;
+//    public LimitedTriesQuiz limitedTriesQuiz;
 //    @BeforeEach
 //    void runBefore() {
 //        QuestionList questionList = generateQuestionList();
