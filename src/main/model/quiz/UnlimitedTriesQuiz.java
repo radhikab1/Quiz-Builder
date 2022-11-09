@@ -39,6 +39,7 @@ public class UnlimitedTriesQuiz extends Quiz {
     // MODIFIES: this
     // EFFECTS: returns a string providing feedback to the user on their performance in the quiz
     public String endQuiz() {
-        return "It took you " + getNumAttempts() + " attempts to answer " + questions.length() + " questions correctly.";
+        return "It took you " + getNumAttempts() + " attempts to answer " + questions.length()
+                + " questions correctly.";
     }
 }
