@@ -11,9 +11,21 @@ public class ArithmeticQuestion extends Question {
 
     // REQUIRES: maxMark must be >= 0
     // EFFECTS: constructs arithmetic answer question with given maximum mark, question statement, and correct answer
-    public ArithmeticQuestion(int maxMark, Operation operation, int firstOp, int secondOp, int correctAnswer) {
-        super(maxMark, questionString(operation, firstOp, secondOp), new ArithmeticAnswerChecker(correctAnswer));
+    public ArithmeticQuestion(int maxMark, Operation operation, int firstOp, int secondOp) {
+        super(maxMark, questionString(operation, firstOp, secondOp),
+                new ArithmeticAnswerChecker(correctAnswer(operation, firstOp, secondOp)));
 
+    }
+
+    static int correctAnswer(Operation operation, int firstOp, int secondOp) {
+        switch (operation) {
+            case ADDITION:
+                return firstOp + secondOp;
+            case SUBTRACTION:
+                return firstOp - secondOp;
+            default:
+                return firstOp * secondOp;
+        }
     }
 
     // REQUIRES:

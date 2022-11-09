@@ -11,7 +11,7 @@ public class ArithmeticQuestionTest extends QuestionTest {
     @BeforeEach
     public void runBefore() {
         arithmeticQuestion = new ArithmeticQuestion(5, ArithmeticQuestion.Operation.MULTIPLICATION,
-                2,3, 6);
+                2,3);
         question = arithmeticQuestion;
     }
 
