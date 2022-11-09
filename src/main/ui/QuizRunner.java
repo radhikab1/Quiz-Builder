@@ -3,6 +3,8 @@ package ui;
 import model.exceptions.AnswerIncorrectException;
 import model.exceptions.OutOfTriesException;
 import model.question.Question;
+import model.question.checker.AnswerChecker;
+import model.question.checker.ArithmeticAnswerChecker;
 import model.quiz.Quiz;
 
 import java.util.Scanner;

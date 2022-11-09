@@ -11,13 +11,11 @@ public class ArithmeticAnswerChecker extends AnswerChecker {
 
     @Override
     public boolean checkAnswer(String userResponse) {
-        int userAnswer;
-
         try {
-            userAnswer = Integer.parseInt(userResponse);
+            Integer.parseInt(userResponse);
+            return answer == Integer.parseInt(userResponse);
         } catch (NumberFormatException e) {
-            System.out.println("Not an integer!");
+            return false;
         }
-        return answer == Integer.parseInt(userResponse);
     }
 }
