@@ -31,8 +31,52 @@ public class ArithmeticQuestionTest extends QuestionTest {
     }
 
     @Test
-    public void testAnswerIncorrect() {
+    public void testAnswerTooSmall() {
         assertFalse(arithmeticQuestion.isCorrect("5"));
+    }
 
+    @Test
+    public void testAnswerTooLarge() {
+        assertFalse(arithmeticQuestion.isCorrect("7"));
+    }
+
+    @Test
+    public void testAnswerNonIntegerValue() {
+        try {
+            arithmeticQuestion.isCorrect("5.0");
+            fail("Exception Expected");
+        } catch (Exception e) {
+
+        }
+    }
+
+    @Test
+    public void testAnswerGreaterThanIntegerValuesRange() {
+        try {
+            arithmeticQuestion.isCorrect("2147483648");
+            fail("Exception Expected");
+        } catch (Exception e) {
+
+        }
+    }
+
+    @Test
+    public void testAnswerLessThanIntegerValuesRange() {
+        try {
+            arithmeticQuestion.isCorrect("-2147483649");
+            fail("Exception Expected");
+        } catch (Exception e) {
+
+        }
+    }
+
+    @Test
+    public void testAnswerNotInterpretedAsInteger() {
+        try {
+            arithmeticQuestion.isCorrect("four");
+            fail("Exception Expected");
+        } catch (Exception e) {
+
+        }
     }
 }
