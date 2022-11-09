@@ -29,34 +29,15 @@ public class LimitedTriesQuiz extends Quiz {
             maxMark--;
             throw new AnswerIncorrectException("Re-try Question!");
         }
-        if ((!correct) && (maxMark == 0)) {
+        if (((!correct) && (maxMark == 0)) || (correct)) {
             questionNumber++;
             if (questions.length() > questionNumber) {
                 maxMark = questions.getQuestion(questionNumber).getMaxMark();
             }
-            throw new OutOfTriesException("Incorrect answer. No more attempts allowed!");
-        }
-        if (correct) {
-            if (questions.length() > questionNumber) {
-                maxMark = questions.getQuestion(questionNumber).getMaxMark();
+            if (!correct) {
+                throw new OutOfTriesException("Incorrect answer. No more attempts allowed!");
             }
-            questionNumber++;
         }
         return correct ? "Correct!" : "Incorrect!";
-
-//        for (int maxMark = questions.getMaxMark(); maxMark >= 0; maxMark--) {
-//            boolean correct = super.checkAnswer(answer);
-//            if ((!correct) && (maxMark != 0)) {
-//                throw new AnswerIncorrectException("Re-try Question!");
-//            }
-//
-//            if (maxMark == 0) {
-//                throw new OutOfTriesException("Incorrect answer. No more attempts allowed!");
-//            } else if (correct) {
-//                break;
-//            }
-//        }
-//        boolean correct = super.checkAnswer(answer);
-//        return correct ? "Correct!" : "Incorrect!";
     }
 }
