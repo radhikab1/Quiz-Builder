@@ -58,7 +58,7 @@ public class LimitedTriesQuizTest extends QuizTest {
         try {
             String feedback = quiz.submitAnswer("Earth");
             assertEquals("Correct!", feedback);
-            assertEquals(4, quiz.getMarkSoFar());
+            assertEquals(3, quiz.getMarkSoFar());
         } catch (AnswerIncorrectException e) {
             fail("Should not have thrown exception.");
         } catch (OutOfTriesException e) {
@@ -80,9 +80,9 @@ public class LimitedTriesQuizTest extends QuizTest {
         try {
             String feedback = quiz.submitAnswer("Canada");
             assertEquals("Correct!", feedback);
-            assertEquals(6, quiz.getMarkSoFar());
+            assertEquals(4, quiz.getMarkSoFar());
             assertFalse(quiz.hasMoreQuestions());
-            assertEquals("Your final mark is: 6 out of 6", quiz.endQuiz());
+            assertEquals("Your final mark is: 4 out of 6", quiz.endQuiz());
         } catch (AnswerIncorrectException e) {
             fail("Should not have thrown exception.");
         } catch (OutOfTriesException e) {
@@ -126,7 +126,7 @@ public class LimitedTriesQuizTest extends QuizTest {
         try {
             String feedback = quiz.submitAnswer("Earth");
             assertEquals("Correct!", feedback);
-            assertEquals(4, quiz.getMarkSoFar());
+            assertEquals(1, quiz.getMarkSoFar());
         } catch (AnswerIncorrectException e) {
             fail("Should not have thrown exception.");
         } catch (OutOfTriesException e) {
@@ -148,9 +148,9 @@ public class LimitedTriesQuizTest extends QuizTest {
         try {
             String feedback = quiz.submitAnswer("Canada");
             assertEquals("Correct!", feedback);
-            assertEquals(6, quiz.getMarkSoFar());
+            assertEquals(2, quiz.getMarkSoFar());
             assertFalse(quiz.hasMoreQuestions());
-            assertEquals("Your final mark is: 6 out of 6", quiz.endQuiz());
+            assertEquals("Your final mark is: 2 out of 6", quiz.endQuiz());
         } catch (AnswerIncorrectException e) {
             fail("Should not have thrown exception.");
         } catch (OutOfTriesException e) {

@@ -5,15 +5,13 @@ import model.exceptions.OutOfTriesException;
 import model.question.QuestionList;
 
 public class LimitedTriesQuiz extends Quiz {
-    int questionNumber;
-    int maxMark;
+    Integer maxMark;
 
     // REQUIRES: questions cannot be an empty list
     // EFFECTS: constructs quiz with given list of questions
     public LimitedTriesQuiz(QuestionList questions) {
         super(questions);
-        questionNumber = 0;
-        maxMark = questions.getQuestion(questionNumber).getMaxMark();
+
     }
 
     // MODIFIES: this
@@ -25,14 +23,11 @@ public class LimitedTriesQuiz extends Quiz {
     @Override
     public String submitAnswer(String answer) throws AnswerIncorrectException, OutOfTriesException {
         boolean correct = super.checkAnswer(answer);
+        maxMark = this.curQuestion.getMaxMark();
         if ((!correct) && (maxMark > 1)) {
-            maxMark--;
+            this.curQuestion.setMaxMark(maxMark - 1);
             throw new AnswerIncorrectException("Re-try Question!");
         } else {
-            questionNumber++;
-            if (questions.length() > questionNumber) {
-                maxMark = questions.getQuestion(questionNumber).getMaxMark();
-            }
             if (!correct) {
                 throw new OutOfTriesException("Incorrect answer. No more attempts allowed!");
             } else {
