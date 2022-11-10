@@ -38,6 +38,6 @@ public class LimitedTriesQuiz extends Quiz {
                 throw new OutOfTriesException("Incorrect answer. No more attempts allowed!");
             }
         }
-        return correct ? "Correct!" : "Incorrect!";
+        return "Correct!";
     }
 }
