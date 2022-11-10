@@ -25,11 +25,11 @@ public class LimitedTriesQuiz extends Quiz {
     @Override
     public String submitAnswer(String answer) throws AnswerIncorrectException, OutOfTriesException {
         boolean correct = super.checkAnswer(answer);
-        if ((!correct) && (maxMark > 0)) {
+        if ((!correct) && (maxMark > 1)) {
             maxMark--;
             throw new AnswerIncorrectException("Re-try Question!");
         }
-        if (((!correct) && (maxMark == 0)) || (correct)) {
+        if (((!correct) && (maxMark == 1)) || (correct)) {
             questionNumber++;
             if (questions.length() > questionNumber) {
                 maxMark = questions.getQuestion(questionNumber).getMaxMark();
@@ -38,6 +38,6 @@ public class LimitedTriesQuiz extends Quiz {
                 throw new OutOfTriesException("Incorrect answer. No more attempts allowed!");
             }
         }
-        return "Correct!";
+        return correct ? "Correct!" : "Incorrect!";
     }
 }
