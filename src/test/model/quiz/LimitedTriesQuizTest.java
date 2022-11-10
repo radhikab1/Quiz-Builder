@@ -43,7 +43,7 @@ public class LimitedTriesQuizTest extends QuizTest {
     }
 
     @Test
-    void testSubmitAnswerAllIncorrectAttemptsLeft() {
+    void testSubmitAnswerAllIncorrectOnFirstTryOnly() {
         try {
             quiz.getNextQuestion();
             String feedback = quiz.submitAnswer("erth");
@@ -93,7 +93,7 @@ public class LimitedTriesQuizTest extends QuizTest {
     }
 
     @Test
-    void testSubmitAnswerPartiallyCorrect() {
+    void testSubmitAnswerAllIncorrectUntilLastAttempt() {
         try {
             quiz.getNextQuestion();
             String feedback = quiz.submitAnswer("erth");
@@ -107,7 +107,7 @@ public class LimitedTriesQuizTest extends QuizTest {
         }
 
         try {
-            String feedback = quiz.submitAnswer("Mars");
+            String feedback = quiz.submitAnswer("saturn");
             assertEquals("Incorrect!", feedback);
             assertEquals(0, quiz.getMarkSoFar());
             fail("Expected AnswerIncorrectException");
@@ -118,7 +118,7 @@ public class LimitedTriesQuizTest extends QuizTest {
         }
 
         try {
-            String feedback = quiz.submitAnswer("Jupiter");
+            String feedback = quiz.submitAnswer("jupiter");
             assertEquals("Incorrect!", feedback);
             assertEquals(0, quiz.getMarkSoFar());
             fail("Expected AnswerIncorrectException");
@@ -128,34 +128,35 @@ public class LimitedTriesQuizTest extends QuizTest {
             fail("Should not have thrown exception.");
         }
 
-//        try {
-//            String feedback = quiz.submitAnswer("Saturn");
-//            assertEquals("Incorrect!", feedback);
-//            assertEquals(0, quiz.getMarkSoFar());
-//            fail("Expected AnswerIncorrectException");
-//        } catch (AnswerIncorrectException e) {
-//        } catch (OutOfTriesException e) {
-//            fail("Should not have thrown exception.");
-//        }
-
         try {
-            String feedback = quiz.submitAnswer("Pluto");
-            assertEquals("Incorrect!", feedback);
-            assertEquals(0, quiz.getMarkSoFar());
-            fail("Expected OutOfTriesException");
+            String feedback = quiz.submitAnswer("Earth");
+            assertEquals("Correct!", feedback);
+            assertEquals(4, quiz.getMarkSoFar());
         } catch (AnswerIncorrectException e) {
             fail("Should not have thrown exception.");
         } catch (OutOfTriesException e) {
-
+            fail("Should not have thrown exception.");
         }
 
         try {
             quiz.getNextQuestion();
+            String feedback = quiz.submitAnswer("Cambodia");
+            assertEquals("Incorrect!", feedback);
+            assertEquals(0, quiz.getMarkSoFar());
+            assertFalse(quiz.hasMoreQuestions());
+            fail("Expected AnswerIncorrectException");
+        } catch (AnswerIncorrectException e) {
+
+        } catch (OutOfTriesException e) {
+            fail("Should not have thrown exception.");
+        }
+
+        try {
             String feedback = quiz.submitAnswer("Canada");
             assertEquals("Correct!", feedback);
-            assertEquals(2, quiz.getMarkSoFar());
+            assertEquals(6, quiz.getMarkSoFar());
             assertFalse(quiz.hasMoreQuestions());
-            assertEquals("Your final mark is: 2 out of 6", quiz.endQuiz());
+            assertEquals("Your final mark is: 6 out of 6", quiz.endQuiz());
         } catch (AnswerIncorrectException e) {
             fail("Should not have thrown exception.");
         } catch (OutOfTriesException e) {
@@ -257,6 +258,77 @@ public class LimitedTriesQuizTest extends QuizTest {
             fail("Should not have thrown exception.");
         } catch (OutOfTriesException e) {
 
+        }
+    }
+
+    @Test
+    void testSubmitAnswerPartiallyCorrect() {
+        try {
+            quiz.getNextQuestion();
+            String feedback = quiz.submitAnswer("erth");
+            assertEquals("Incorrect!", feedback);
+            assertEquals(0, quiz.getMarkSoFar());
+            fail("Expected AnswerIncorrectException");
+        } catch (AnswerIncorrectException e) {
+
+        } catch (OutOfTriesException e) {
+            fail("Should not have thrown exception.");
+        }
+
+        try {
+            String feedback = quiz.submitAnswer("Mars");
+            assertEquals("Incorrect!", feedback);
+            assertEquals(0, quiz.getMarkSoFar());
+            fail("Expected AnswerIncorrectException");
+        } catch (AnswerIncorrectException e) {
+
+        } catch (OutOfTriesException e) {
+            fail("Should not have thrown exception.");
+        }
+
+        try {
+            String feedback = quiz.submitAnswer("Jupiter");
+            assertEquals("Incorrect!", feedback);
+            assertEquals(0, quiz.getMarkSoFar());
+            fail("Expected AnswerIncorrectException");
+        } catch (AnswerIncorrectException e) {
+
+        } catch (OutOfTriesException e) {
+            fail("Should not have thrown exception.");
+        }
+
+//        try {
+//            String feedback = quiz.submitAnswer("Saturn");
+//            assertEquals("Incorrect!", feedback);
+//            assertEquals(0, quiz.getMarkSoFar());
+//            fail("Expected AnswerIncorrectException");
+//        } catch (AnswerIncorrectException e) {
+//        } catch (OutOfTriesException e) {
+//            fail("Should not have thrown exception.");
+//        }
+
+        try {
+            String feedback = quiz.submitAnswer("Pluto");
+            assertEquals("Incorrect!", feedback);
+            assertEquals(0, quiz.getMarkSoFar());
+            fail("Expected OutOfTriesException");
+        } catch (AnswerIncorrectException e) {
+            fail("Should not have thrown exception.");
+        } catch (OutOfTriesException e) {
+
+        }
+
+        try {
+            quiz.getNextQuestion();
+            String feedback = quiz.submitAnswer("Canada");
+            assertEquals("Correct!", feedback);
+            assertEquals(2, quiz.getMarkSoFar());
+            assertFalse(quiz.hasMoreQuestions());
+            assertEquals("Your final mark is: 2 out of 6", quiz.endQuiz());
+        } catch (AnswerIncorrectException e) {
+            fail("Should not have thrown exception.");
+        } catch (OutOfTriesException e) {
+            fail("Should not have thrown exception.");
         }
     }
 }
