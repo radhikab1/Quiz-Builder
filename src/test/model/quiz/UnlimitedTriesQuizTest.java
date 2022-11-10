@@ -99,6 +99,85 @@ public class UnlimitedTriesQuizTest extends QuizTest {
     }
 
     @Test
+    void testSubmitAnswerAllIncorrectMultipleTimes() {
+        try {
+            quiz.getNextQuestion();
+            String feedback = quiz.submitAnswer("erth");
+            assertEquals("Incorrect!", feedback);
+            assertEquals(0, quiz.getMarkSoFar());
+            assertEquals(1, unlimitedTriesQuiz.getNumAttempts());
+            fail("Expected AnswerIncorrectException");
+        } catch (AnswerIncorrectException e) {
+
+        } catch (OutOfTriesException e) {
+            fail("Should not have thrown exception.");
+        }
+
+        try {
+            String feedback = quiz.submitAnswer("saturn");
+            assertEquals("Incorrect!", feedback);
+            assertEquals(0, quiz.getMarkSoFar());
+            assertEquals(2, unlimitedTriesQuiz.getNumAttempts());
+            fail("Expected AnswerIncorrectException");
+        } catch (AnswerIncorrectException e) {
+
+        } catch (OutOfTriesException e) {
+            fail("Should not have thrown exception.");
+        }
+
+        try {
+            String feedback = quiz.submitAnswer("Earth");
+            assertEquals("Correct!", feedback);
+            assertEquals(4, quiz.getMarkSoFar());
+            assertEquals(3, unlimitedTriesQuiz.getNumAttempts());
+        } catch (AnswerIncorrectException e) {
+            fail("Should not have thrown exception.");
+        } catch (OutOfTriesException e) {
+            fail("Should not have thrown exception.");
+        }
+
+        try {
+            quiz.getNextQuestion();
+            String feedback = quiz.submitAnswer("Cambodia");
+            assertEquals("Incorrect!", feedback);
+            assertEquals(0, quiz.getMarkSoFar());
+            assertFalse(quiz.hasMoreQuestions());
+            assertEquals(4, unlimitedTriesQuiz.getNumAttempts());
+            fail("Expected AnswerIncorrectException");
+        } catch (AnswerIncorrectException e) {
+
+        } catch (OutOfTriesException e) {
+            fail("Should not have thrown exception.");
+        }
+
+        try {
+            String feedback = quiz.submitAnswer("China");
+            assertEquals("Incorrect!", feedback);
+            assertEquals(0, quiz.getMarkSoFar());
+            assertFalse(quiz.hasMoreQuestions());
+            assertEquals(5, unlimitedTriesQuiz.getNumAttempts());
+            fail("Expected AnswerIncorrectException");
+        } catch (AnswerIncorrectException e) {
+
+        } catch (OutOfTriesException e) {
+            fail("Should not have thrown exception.");
+        }
+
+        try {
+            String feedback = quiz.submitAnswer("Canada");
+            assertEquals("Correct!", feedback);
+            assertEquals(6, quiz.getMarkSoFar());
+            assertFalse(quiz.hasMoreQuestions());
+            assertEquals(6, unlimitedTriesQuiz.getNumAttempts());
+            assertEquals("It took you 6 attempts to answer 2 questions correctly.", quiz.endQuiz());
+        } catch (AnswerIncorrectException e) {
+            fail("Should not have thrown exception.");
+        } catch (OutOfTriesException e) {
+            fail("Should not have thrown exception.");
+        }
+    }
+
+    @Test
     void testSubmitAnswerPartiallyCorrect() {
         try {
             quiz.getNextQuestion();
