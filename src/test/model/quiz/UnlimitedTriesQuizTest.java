@@ -49,7 +49,7 @@ public class UnlimitedTriesQuizTest extends QuizTest {
         try {
             quiz.getNextQuestion();
             String feedback = quiz.submitAnswer("erth");
-            assertEquals("Incorrect!", feedback);
+            //assertEquals("Incorrect!", feedback);
             assertEquals(0, quiz.getMarkSoFar());
             assertEquals(1, unlimitedTriesQuiz.getNumAttempts());
             fail("Expected AnswerIncorrectException");
@@ -73,7 +73,7 @@ public class UnlimitedTriesQuizTest extends QuizTest {
         try {
             quiz.getNextQuestion();
             String feedback = quiz.submitAnswer("Cambodia");
-            assertEquals("Incorrect!", feedback);
+            //assertEquals("Incorrect!", feedback);
             assertEquals(0, quiz.getMarkSoFar());
             assertFalse(quiz.hasMoreQuestions());
             assertEquals(3, unlimitedTriesQuiz.getNumAttempts());
@@ -103,7 +103,7 @@ public class UnlimitedTriesQuizTest extends QuizTest {
         try {
             quiz.getNextQuestion();
             String feedback = quiz.submitAnswer("erth");
-            assertEquals("Incorrect!", feedback);
+            //assertEquals("Incorrect!", feedback);
             assertEquals(0, quiz.getMarkSoFar());
             assertEquals(1, unlimitedTriesQuiz.getNumAttempts());
             fail("Expected AnswerIncorrectException");
@@ -115,7 +115,7 @@ public class UnlimitedTriesQuizTest extends QuizTest {
 
         try {
             String feedback = quiz.submitAnswer("saturn");
-            assertEquals("Incorrect!", feedback);
+            //assertEquals("Incorrect!", feedback);
             assertEquals(0, quiz.getMarkSoFar());
             assertEquals(2, unlimitedTriesQuiz.getNumAttempts());
             fail("Expected AnswerIncorrectException");
@@ -127,7 +127,7 @@ public class UnlimitedTriesQuizTest extends QuizTest {
 
         try {
             String feedback = quiz.submitAnswer("jupiter");
-            assertEquals("Incorrect!", feedback);
+            //assertEquals("Incorrect!", feedback);
             assertEquals(0, quiz.getMarkSoFar());
             assertEquals(3, unlimitedTriesQuiz.getNumAttempts());
             fail("Expected AnswerIncorrectException");
@@ -139,7 +139,7 @@ public class UnlimitedTriesQuizTest extends QuizTest {
 
         try {
             String feedback = quiz.submitAnswer("moon");
-            assertEquals("Incorrect!", feedback);
+            //assertEquals("Incorrect!", feedback);
             assertEquals(0, quiz.getMarkSoFar());
             assertEquals(4, unlimitedTriesQuiz.getNumAttempts());
             fail("Expected AnswerIncorrectException");
@@ -163,7 +163,7 @@ public class UnlimitedTriesQuizTest extends QuizTest {
         try {
             quiz.getNextQuestion();
             String feedback = quiz.submitAnswer("Cambodia");
-            assertEquals("Incorrect!", feedback);
+            //assertEquals("Incorrect!", feedback);
             assertEquals(4, quiz.getMarkSoFar());
             assertFalse(quiz.hasMoreQuestions());
             assertEquals(6, unlimitedTriesQuiz.getNumAttempts());
@@ -176,7 +176,7 @@ public class UnlimitedTriesQuizTest extends QuizTest {
 
         try {
             String feedback = quiz.submitAnswer("China");
-            assertEquals("Incorrect!", feedback);
+            //assertEquals("Incorrect!", feedback);
             assertEquals(4, quiz.getMarkSoFar());
             assertFalse(quiz.hasMoreQuestions());
             assertEquals(7, unlimitedTriesQuiz.getNumAttempts());
@@ -206,7 +206,7 @@ public class UnlimitedTriesQuizTest extends QuizTest {
         try {
             quiz.getNextQuestion();
             String feedback = quiz.submitAnswer("erth");
-            assertEquals("Incorrect!", feedback);
+            //assertEquals("Incorrect!", feedback);
             assertEquals(0, quiz.getMarkSoFar());
             assertEquals(1, unlimitedTriesQuiz.getNumAttempts());
             fail("Expected AnswerIncorrectException");
