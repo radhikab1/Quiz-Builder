@@ -28,16 +28,16 @@ public class LimitedTriesQuiz extends Quiz {
         if ((!correct) && (maxMark > 1)) {
             maxMark--;
             throw new AnswerIncorrectException("Re-try Question!");
-        }
-        if (((!correct) && (maxMark == 1)) || (correct)) {
+        } else {
             questionNumber++;
             if (questions.length() > questionNumber) {
                 maxMark = questions.getQuestion(questionNumber).getMaxMark();
             }
             if (!correct) {
                 throw new OutOfTriesException("Incorrect answer. No more attempts allowed!");
+            } else {
+                return "Correct!";
             }
         }
-        return correct ? "Correct!" : "Incorrect!";
     }
 }
