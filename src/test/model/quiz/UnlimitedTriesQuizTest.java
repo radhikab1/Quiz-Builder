@@ -99,36 +99,6 @@ public class UnlimitedTriesQuizTest extends QuizTest {
     }
 
     @Test
-    void testSubmitAnswerAllIncorrect() {
-        try {
-            quiz.getNextQuestion();
-            String feedback = quiz.submitAnswer("erth");
-            assertEquals("Incorrect!", feedback);
-            assertEquals(0, quiz.getMarkSoFar());
-            assertEquals(1, unlimitedTriesQuiz.getNumAttempts());
-            fail("Expected AnswerIncorrectException");
-        } catch (AnswerIncorrectException e) {
-
-        } catch (OutOfTriesException e) {
-            fail("Should not have thrown exception.");
-        }
-
-        try {
-            quiz.getNextQuestion();
-            String feedback = quiz.submitAnswer("Cambodia");
-            assertEquals("Incorrect!", feedback);
-            assertEquals(0, quiz.getMarkSoFar());
-            assertFalse(quiz.hasMoreQuestions());
-            assertEquals(2, unlimitedTriesQuiz.getNumAttempts());
-            fail("Expected AnswerIncorrectException");
-        } catch (AnswerIncorrectException e) {
-
-        } catch (OutOfTriesException e) {
-            fail("Should not have thrown exception.");
-        }
-    }
-
-    @Test
     void testSubmitAnswerAllIncorrectMultipleTimes() {
         try {
             quiz.getNextQuestion();

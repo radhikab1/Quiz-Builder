@@ -88,7 +88,7 @@ public class LimitedTriesQuizTest extends QuizTest {
         } catch (AnswerIncorrectException e) {
             fail("Should not have thrown exception.");
         } catch (OutOfTriesException e) {
-            //fail("Should not have thrown exception.");
+            fail("Should not have thrown exception.");
         }
     }
 
@@ -135,7 +135,7 @@ public class LimitedTriesQuizTest extends QuizTest {
         } catch (AnswerIncorrectException e) {
             fail("Should not have thrown exception.");
         } catch (OutOfTriesException e) {
-            //fail("Should not have thrown exception.");
+            fail("Should not have thrown exception.");
         }
 
         try {
@@ -160,7 +160,7 @@ public class LimitedTriesQuizTest extends QuizTest {
         } catch (AnswerIncorrectException e) {
             fail("Should not have thrown exception.");
         } catch (OutOfTriesException e) {
-            //fail("Should not have thrown exception.");
+            fail("Should not have thrown exception.");
         }
     }
 
@@ -200,17 +200,6 @@ public class LimitedTriesQuizTest extends QuizTest {
             fail("Should not have thrown exception.");
         }
 
-//        try {
-//            String feedback = quiz.submitAnswer("Saturn");
-//            assertEquals("Incorrect!", feedback);
-//            assertEquals(0, quiz.getMarkSoFar());
-//            fail("Expected OutOfTriesException");
-//        } catch (AnswerIncorrectException e) {
-//
-//        } catch (OutOfTriesException e) {
-//            fail("Should not have thrown exception.");
-//        }
-
         try {
             String feedback = quiz.submitAnswer("Pluto");
             assertEquals("Incorrect!", feedback);
@@ -234,18 +223,6 @@ public class LimitedTriesQuizTest extends QuizTest {
         } catch (OutOfTriesException e) {
             fail("Should not have thrown exception.");
         }
-
-//        try {
-//            String feedback = quiz.submitAnswer("China");
-//            assertEquals("Incorrect!", feedback);
-//            assertEquals(0, quiz.getMarkSoFar());
-//            assertFalse(quiz.hasMoreQuestions());
-//            fail("Expected AnswerIncorrectException");
-//        } catch (AnswerIncorrectException e) {
-//
-//        } catch (OutOfTriesException e) {
-//            fail("Should not have thrown exception.");
-//        }
 
         try {
             String feedback = quiz.submitAnswer("Russia");
@@ -296,16 +273,6 @@ public class LimitedTriesQuizTest extends QuizTest {
         } catch (OutOfTriesException e) {
             fail("Should not have thrown exception.");
         }
-
-//        try {
-//            String feedback = quiz.submitAnswer("Saturn");
-//            assertEquals("Incorrect!", feedback);
-//            assertEquals(0, quiz.getMarkSoFar());
-//            fail("Expected AnswerIncorrectException");
-//        } catch (AnswerIncorrectException e) {
-//        } catch (OutOfTriesException e) {
-//            fail("Should not have thrown exception.");
-//        }
 
         try {
             String feedback = quiz.submitAnswer("Pluto");
