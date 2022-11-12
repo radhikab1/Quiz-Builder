@@ -4,6 +4,8 @@ import model.exceptions.AnswerIncorrectException;
 import model.exceptions.OutOfTriesException;
 import model.question.QuestionList;
 
+// Represents a quiz that allows the user to retry the answer as many times as there are marks initially located to the
+// question. Moves on to next question if user answers question incorrectly on last try
 public class LimitedTriesQuiz extends Quiz {
     Integer maxMark;
 
@@ -11,13 +13,12 @@ public class LimitedTriesQuiz extends Quiz {
     // EFFECTS: constructs quiz with given list of questions
     public LimitedTriesQuiz(QuestionList questions) {
         super(questions);
-
     }
 
     // MODIFIES: this
     // EFFECTS: submit an answer to the current question and return feedback string;
     // if the answer is incorrect, decrements the max mark of the current question by one;
-    // throws AnswerIncorrectExceptioncorrectException if the user should re-try the question
+    // throws AnswerIncorrectException if the user should re-try the question
     // throws an OutOfTriesException if the answer is incorrect and no more
     // attempts are allowed
     @Override

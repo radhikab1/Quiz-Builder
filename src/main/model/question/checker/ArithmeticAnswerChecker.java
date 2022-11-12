@@ -1,6 +1,6 @@
 package model.question.checker;
 
-// Checks answers to arithmetic answer questions
+// Checks answers to arithmetic questions
 public class ArithmeticAnswerChecker extends AnswerChecker {
     private int answer;
 

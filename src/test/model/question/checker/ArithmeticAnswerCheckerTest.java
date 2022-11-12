@@ -15,54 +15,38 @@ public class ArithmeticAnswerCheckerTest {
     }
 
     @Test
-    void testUserResponseEqualsAnswer() {
+    void testCorrectUserResponseEqualsAnswer() {
         assertTrue(arithmeticAnswerChecker.checkAnswer("6"));
     }
 
     @Test
-    void testUserResponseLargerThanAnswer() {
+    void testIncorrectUserResponseLargerThanAnswer() {
         assertFalse(arithmeticAnswerChecker.checkAnswer("7"));
     }
 
     @Test
-    void testUserResponseLessThanAnswer() {
+    void testIncorrectUserResponseLessThanAnswer() {
         assertFalse(arithmeticAnswerChecker.checkAnswer("5"));
     }
 
     @Test
-    public void testAnswerNonIntegerValue() {
-        try {
-            arithmeticAnswerChecker.checkAnswer("5.0");
-        } catch (NumberFormatException e) {
-
-        }
+    public void testIncorrectUserResponseNonIntegerValue() {
+        assertFalse(arithmeticAnswerChecker.checkAnswer("5.0"));
     }
 
     @Test
-    public void testAnswerGreaterThanIntegerValuesRange() {
-        try {
-            arithmeticAnswerChecker.checkAnswer("2147483648");
-        } catch (NumberFormatException e) {
-
-        }
+    public void testIncorrectUserResponseGreaterThanRepresentableIntegerValue() {
+        assertFalse(arithmeticAnswerChecker.checkAnswer("2147483648"));
     }
 
     @Test
-    public void testAnswerLessThanIntegerValuesRange() {
-        try {
-            arithmeticAnswerChecker.checkAnswer("-2147483649");
-        } catch (NumberFormatException e) {
-
-        }
+    public void testIncorrectUserResponseLessThanRepresentableIntegerValue() {
+        assertFalse(arithmeticAnswerChecker.checkAnswer("-2147483649"));
     }
 
     @Test
     public void testAnswerNotInterpretedAsInteger() {
-        try {
-            arithmeticAnswerChecker.checkAnswer("four");
-        } catch (NumberFormatException e) {
-
-        }
+        assertFalse(arithmeticAnswerChecker.checkAnswer("four"));
     }
 
 

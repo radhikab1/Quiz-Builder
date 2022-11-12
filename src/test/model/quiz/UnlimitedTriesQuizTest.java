@@ -32,6 +32,7 @@ public class UnlimitedTriesQuizTest extends QuizTest {
             assertEquals("Correct!", feedback);
             assertEquals(4, quiz.getMarkSoFar());
             assertEquals(1, unlimitedTriesQuiz.getNumAttempts());
+            assertTrue(quiz.hasMoreQuestions());
             quiz.getNextQuestion();
             feedback = quiz.submitAnswer("Canada");
             assertEquals("Correct!", feedback);
@@ -48,10 +49,10 @@ public class UnlimitedTriesQuizTest extends QuizTest {
     void testSubmitAnswerAllIncorrectOnce() {
         try {
             quiz.getNextQuestion();
-            String feedback = quiz.submitAnswer("erth");
-            //assertEquals("Incorrect!", feedback);
+            quiz.submitAnswer("erth");
             assertEquals(0, quiz.getMarkSoFar());
             assertEquals(1, unlimitedTriesQuiz.getNumAttempts());
+            assertTrue(quiz.hasMoreQuestions());
             fail("Expected AnswerIncorrectException");
         } catch (AnswerIncorrectException e) {
 
@@ -64,6 +65,7 @@ public class UnlimitedTriesQuizTest extends QuizTest {
             assertEquals("Correct!", feedback);
             assertEquals(4, quiz.getMarkSoFar());
             assertEquals(2, unlimitedTriesQuiz.getNumAttempts());
+            assertTrue(quiz.hasMoreQuestions());
         } catch (AnswerIncorrectException e) {
             fail("Should not have thrown exception.");
         } catch (OutOfTriesException e) {
@@ -72,11 +74,11 @@ public class UnlimitedTriesQuizTest extends QuizTest {
 
         try {
             quiz.getNextQuestion();
-            String feedback = quiz.submitAnswer("Cambodia");
-            //assertEquals("Incorrect!", feedback);
+            quiz.submitAnswer("Cambodia");
             assertEquals(0, quiz.getMarkSoFar());
             assertFalse(quiz.hasMoreQuestions());
             assertEquals(3, unlimitedTriesQuiz.getNumAttempts());
+            assertTrue(quiz.hasMoreQuestions());
             fail("Expected AnswerIncorrectException");
         } catch (AnswerIncorrectException e) {
 
@@ -102,10 +104,10 @@ public class UnlimitedTriesQuizTest extends QuizTest {
     void testSubmitAnswerAllIncorrectMultipleTimes() {
         try {
             quiz.getNextQuestion();
-            String feedback = quiz.submitAnswer("erth");
-            //assertEquals("Incorrect!", feedback);
+            quiz.submitAnswer("erth");
             assertEquals(0, quiz.getMarkSoFar());
             assertEquals(1, unlimitedTriesQuiz.getNumAttempts());
+            assertTrue(quiz.hasMoreQuestions());
             fail("Expected AnswerIncorrectException");
         } catch (AnswerIncorrectException e) {
 
@@ -114,10 +116,10 @@ public class UnlimitedTriesQuizTest extends QuizTest {
         }
 
         try {
-            String feedback = quiz.submitAnswer("saturn");
-            //assertEquals("Incorrect!", feedback);
+            quiz.submitAnswer("saturn");
             assertEquals(0, quiz.getMarkSoFar());
             assertEquals(2, unlimitedTriesQuiz.getNumAttempts());
+            assertTrue(quiz.hasMoreQuestions());
             fail("Expected AnswerIncorrectException");
         } catch (AnswerIncorrectException e) {
 
@@ -126,10 +128,10 @@ public class UnlimitedTriesQuizTest extends QuizTest {
         }
 
         try {
-            String feedback = quiz.submitAnswer("jupiter");
-            //assertEquals("Incorrect!", feedback);
+            quiz.submitAnswer("jupiter");
             assertEquals(0, quiz.getMarkSoFar());
             assertEquals(3, unlimitedTriesQuiz.getNumAttempts());
+            assertTrue(quiz.hasMoreQuestions());
             fail("Expected AnswerIncorrectException");
         } catch (AnswerIncorrectException e) {
 
@@ -138,10 +140,10 @@ public class UnlimitedTriesQuizTest extends QuizTest {
         }
 
         try {
-            String feedback = quiz.submitAnswer("moon");
-            //assertEquals("Incorrect!", feedback);
+            quiz.submitAnswer("moon");
             assertEquals(0, quiz.getMarkSoFar());
             assertEquals(4, unlimitedTriesQuiz.getNumAttempts());
+            assertTrue(quiz.hasMoreQuestions());
             fail("Expected AnswerIncorrectException");
         } catch (AnswerIncorrectException e) {
 
@@ -154,6 +156,7 @@ public class UnlimitedTriesQuizTest extends QuizTest {
             assertEquals("Correct!", feedback);
             assertEquals(4, quiz.getMarkSoFar());
             assertEquals(5, unlimitedTriesQuiz.getNumAttempts());
+            assertTrue(quiz.hasMoreQuestions());
         } catch (AnswerIncorrectException e) {
             fail("Should not have thrown exception.");
         } catch (OutOfTriesException e) {
@@ -162,11 +165,11 @@ public class UnlimitedTriesQuizTest extends QuizTest {
 
         try {
             quiz.getNextQuestion();
-            String feedback = quiz.submitAnswer("Cambodia");
-            //assertEquals("Incorrect!", feedback);
+            quiz.submitAnswer("Cambodia");
             assertEquals(4, quiz.getMarkSoFar());
             assertFalse(quiz.hasMoreQuestions());
             assertEquals(6, unlimitedTriesQuiz.getNumAttempts());
+            assertTrue(quiz.hasMoreQuestions());
             fail("Expected AnswerIncorrectException");
         } catch (AnswerIncorrectException e) {
 
@@ -175,11 +178,11 @@ public class UnlimitedTriesQuizTest extends QuizTest {
         }
 
         try {
-            String feedback = quiz.submitAnswer("China");
-            //assertEquals("Incorrect!", feedback);
+            quiz.submitAnswer("China");
             assertEquals(4, quiz.getMarkSoFar());
             assertFalse(quiz.hasMoreQuestions());
             assertEquals(7, unlimitedTriesQuiz.getNumAttempts());
+            assertTrue(quiz.hasMoreQuestions());
             fail("Expected AnswerIncorrectException");
         } catch (AnswerIncorrectException e) {
 
@@ -205,10 +208,10 @@ public class UnlimitedTriesQuizTest extends QuizTest {
     void testSubmitAnswerPartiallyCorrect() {
         try {
             quiz.getNextQuestion();
-            String feedback = quiz.submitAnswer("erth");
-            //assertEquals("Incorrect!", feedback);
+             quiz.submitAnswer("erth");
             assertEquals(0, quiz.getMarkSoFar());
             assertEquals(1, unlimitedTriesQuiz.getNumAttempts());
+            assertTrue(quiz.hasMoreQuestions());
             fail("Expected AnswerIncorrectException");
         } catch (AnswerIncorrectException e) {
 
@@ -221,6 +224,7 @@ public class UnlimitedTriesQuizTest extends QuizTest {
             assertEquals("Correct!", feedback);
             assertEquals(4, quiz.getMarkSoFar());
             assertEquals(2, unlimitedTriesQuiz.getNumAttempts());
+            assertTrue(quiz.hasMoreQuestions());
         } catch (AnswerIncorrectException e) {
             fail("Should not have thrown exception.");
         } catch (OutOfTriesException e) {
